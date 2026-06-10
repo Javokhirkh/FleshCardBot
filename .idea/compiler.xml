@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FleshCardService" options="-parameters" />
+      <module name="FleshCardService.main" options="-parameters" />
+      <module name="FleshCardService.test" options="-parameters" />
+      <module name="TelegramBot" options="-parameters" />
+      <module name="TelegramBot.main" options="-parameters" />
+      <module name="TelegramBot.test" options="-parameters" />
+    </option>
+  </component>
+</project>
