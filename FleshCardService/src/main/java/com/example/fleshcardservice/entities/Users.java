@@ -19,6 +19,7 @@ public class Users extends BaseEntity {
     private String botId;
 
     @Column(name = "current_level")
+    @Enumerated(EnumType.STRING)
     private CefrLevel currentLevel;
 
     @Builder.Default

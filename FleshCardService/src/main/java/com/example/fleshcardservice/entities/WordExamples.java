@@ -12,7 +12,7 @@ import lombok.*;
 public class WordExamples extends BaseEntity {
 
 
-    @Column(name = "sentence", nullable = false)
+    @Column(nullable = false)
     private String sentence;
 
     private String translation;

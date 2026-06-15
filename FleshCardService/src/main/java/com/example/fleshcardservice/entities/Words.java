@@ -22,9 +22,11 @@ public class Words extends BaseEntity {
     private String translation;
 
     @Column(name = "part_of_speech")
+    @Enumerated(EnumType.STRING)
     private PartOfSpeech partOfSpeech;
 
     @Column(name = "cefr_level", nullable = false)
+    @Enumerated(EnumType.STRING)
     private CefrLevel cefrLevel;
 
     private String ipa;

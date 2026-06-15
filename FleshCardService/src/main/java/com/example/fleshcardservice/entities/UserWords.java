@@ -24,6 +24,7 @@ public class UserWords extends BaseEntity {
 
     @Builder.Default
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private LearningStatus status = LearningStatus.NEW;
 
     @Builder.Default
