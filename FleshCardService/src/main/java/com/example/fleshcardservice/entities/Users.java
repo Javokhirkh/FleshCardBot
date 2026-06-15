@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Users extends BaseEntity {
 
-    @Column(name = "bot_id", nullable = false)
-    private String botId;
+    @Column(name = "chat_id", nullable = false)
+    private String chatId;
 
     @Column(name = "current_level")
     @Enumerated(EnumType.STRING)
