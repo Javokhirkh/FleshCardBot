@@ -29,7 +29,7 @@ public class Words extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private CefrLevel cefrLevel;
 
-    private String ipa;
+    private String ipa;  // pronunciation
 
     @Column(name = "definition_eng")
     private String definitionEng;
