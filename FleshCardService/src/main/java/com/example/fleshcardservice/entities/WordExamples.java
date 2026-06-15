@@ -12,9 +12,10 @@ import lombok.*;
 public class WordExamples extends BaseEntity {
 
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String sentence;
 
+    @Column(columnDefinition = "TEXT")
     private String translation;
 
     @ManyToOne(fetch = FetchType.LAZY)
