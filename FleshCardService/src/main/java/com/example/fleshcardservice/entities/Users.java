@@ -13,12 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
+public class Users extends BaseEntity {
 
     @Column(name = "bot_id", nullable = false)
     private String botId;

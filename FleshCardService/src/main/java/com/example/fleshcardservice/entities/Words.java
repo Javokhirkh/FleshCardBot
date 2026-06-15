@@ -13,12 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Words {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "word_id")
-    private Long wordId;
+public class Words extends BaseEntity {
 
     @Column(name = "text", nullable = false)
     private String text;
@@ -37,17 +32,6 @@ public class Words {
     @Column(name = "definition_eng")
     private String definitionEng;
 
-    @Builder.Default
-    @Column(name = "is_active", nullable = false)
-    private boolean isActive = true;
-
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
-
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "topic_id")
     private  Topics topic;
 }

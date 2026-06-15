@@ -9,12 +9,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WordExamples {
+public class WordExamples extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "example_id")
-    private Long exampleId;
 
     @Column(name = "sentence", nullable = false)
     private String sentence;
@@ -22,7 +18,6 @@ public class WordExamples {
     private String translation;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "word_id")
     private Words words;
 
 }
