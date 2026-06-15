@@ -1,4 +1,6 @@
 package com.example.fleshcardservice.dtos.responses;
 
-public class response {
+import com.example.fleshcardservice.dtos.Dto;
+
+public class response  implements Dto {
 }
