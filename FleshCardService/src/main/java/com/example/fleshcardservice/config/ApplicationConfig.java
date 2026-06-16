@@ -6,6 +6,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
 public class ApplicationConfig {
+
     @Bean(name = "errorMessageSource")
     public ResourceBundleMessageSource errorMessageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
