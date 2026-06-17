@@ -1,13 +1,9 @@
 package com.example.fleshcardservice.controllers;
 
 import com.example.fleshcardservice.dtos.requests.UserCreateDto;
-import com.example.fleshcardservice.services.SampleService;
 import com.example.fleshcardservice.services.UserService;
-import com.example.fleshcardservice.services.impl.UserServiceImpl;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +20,7 @@ public class UserController extends AbstractController<UserService> {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> create(@RequestBody @Validated UserCreateDto dto) {
+    public ResponseEntity<String> create(@RequestBody @Valid UserCreateDto dto) {
         service.create(dto);
         return ResponseEntity.ok().body("User created successfully");
     }
