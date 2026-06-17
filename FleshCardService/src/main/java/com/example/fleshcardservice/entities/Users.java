@@ -44,7 +44,5 @@ public class Users extends BaseEntity {
     @Column(name = "last_active_date")
     private LocalDate  lastActiveDate;
 
-    @Builder.Default
-    @Column(name = "created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
+
 }
