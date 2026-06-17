@@ -39,9 +39,9 @@ public class UserWords extends BaseEntity {
     @Column(name = "interval_days",nullable = false)
     private int intervalDays = 0;
 
-    @Builder.Default
-    @Column(name = "next_review_at",nullable = false)
-    private LocalDate nextReviewAt =  LocalDate.now();
+
+    @Column(name = "next_review_at")
+    private LocalDate nextReviewAt ;
 
     @Builder.Default
     @Column(name = "times_reviewed", nullable = false)
@@ -56,7 +56,7 @@ public class UserWords extends BaseEntity {
     private int timesWrong = 0;
 
     @Column(name = "last_reviewed_at")
-    private LocalDateTime lastReviewedAt = LocalDateTime.now();
+    private LocalDateTime lastReviewedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Words words;
