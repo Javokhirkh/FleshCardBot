@@ -4,12 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @Entity
-public class Topics extends BaseEntity {
+public class Topic extends BaseEntity {
 
     @Column(name = "topic_name", nullable = false)
     private String topicName;

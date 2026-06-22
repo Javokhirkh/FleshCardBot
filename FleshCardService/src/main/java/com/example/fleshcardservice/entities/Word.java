@@ -5,15 +5,13 @@ import com.example.fleshcardservice.enums.PartOfSpeech;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Words extends BaseEntity {
+public class Word extends BaseEntity {
 
     @Column(name = "text", nullable = false)
     private String text;
@@ -35,5 +33,5 @@ public class Words extends BaseEntity {
     private String definitionEng;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private  Topics topic;
+    private Topic topic;
 }

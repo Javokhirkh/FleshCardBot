@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
                 columnNames = {"user_id", "word_id"}
         )
 )
-public class UserWords extends BaseEntity {
+public class UserWord extends BaseEntity {
 
     @Builder.Default
     @Column(nullable = false)
@@ -59,9 +59,9 @@ public class UserWords extends BaseEntity {
     private LocalDateTime lastReviewedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Words words;
+    private Word word;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Users users;
+    private User user;
 
 }

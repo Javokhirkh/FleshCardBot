@@ -1,10 +1,10 @@
 package com.example.fleshcardservice.repositories;
 
-import com.example.fleshcardservice.entities.Users;
+import com.example.fleshcardservice.entities.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends BaseRepository<Users> {
+public interface UserRepository extends BaseRepository<User> {
 
 
 }

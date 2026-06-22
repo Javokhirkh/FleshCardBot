@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users extends BaseEntity {
+public class User extends BaseEntity {
 
     @Column(name = "chat_id", nullable = false)
     private String chatId;

@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WordExamples extends BaseEntity {
+public class WordExample extends BaseEntity {
 
 
     @Column(columnDefinition = "TEXT", nullable = false)
@@ -19,6 +19,6 @@ public class WordExamples extends BaseEntity {
     private String translation;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Words words;
+    private Word word;
 
 }
