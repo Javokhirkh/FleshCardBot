@@ -3,9 +3,13 @@ package com.example.fleshcardservice.entities;
 import com.example.fleshcardservice.enums.CefrLevel;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,7 +17,8 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseEntity {
+@Table(name = "users")
+public class User extends BaseEntity implements UserDetails {
 
     @Column(name = "chat_id", nullable = false)
     private String chatId;
@@ -44,5 +49,34 @@ public class User extends BaseEntity {
     @Column(name = "last_active_date")
     private LocalDate  lastActiveDate;
 
+    @Column(unique = true)
+    private String username;
 
+    @Column
+    private String password;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
 }

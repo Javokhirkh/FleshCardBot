@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 
     private final UserRepository repository;
 
@@ -24,19 +24,25 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .chatId(dto.chatId())
                 .build();
+        System.out.println("Creating user: ");
         repository.save(user);
     }
 
     @Override
     public void update(UserUpdateRequestDto dto) {
         User user = this.getUserById(dto.id());
-        // Update user properties based on dto
+
         repository.save(user);
     }
 
     @Override
     public UserFullResponseDto getById(Long id) {
-        return null;
+        User user = this.getUserById(id);
+        UserFullResponseDto dto = UserFullResponseDto.builder()
+                .id(user.getId())
+                .chatId(user.getChatId())
+                .build();
+        return dto;
     }
 
     @Override
@@ -54,6 +60,4 @@ public class UserServiceImpl implements UserService {
     private User getUserById(Long id) {
         return repository.findById(id).orElseThrow(UserNotFoundException::new);
     }
-
-    //public Users findUserById(String id) {}
 }
