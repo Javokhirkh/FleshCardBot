@@ -32,12 +32,6 @@ springdoc:
   swagger-ui:
     path: /docs
 
-telegram:
-  bot:
-    token: 123456789:ABCdefGhIJKlmNoPQRstuVWXyz  # your real bot token from @BotFather
-    secret-token: mywebhooksecret123  # you choose any random string
-    username: my_bot  # your bot's username without @
-
 app:
   jwt:
     secret: your-256-bit-secret-key-make-it-long-enough-32chars

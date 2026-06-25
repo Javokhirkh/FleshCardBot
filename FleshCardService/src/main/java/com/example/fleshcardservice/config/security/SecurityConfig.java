@@ -18,11 +18,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final String[] WHITELIST = {
-            "/auth/**",
+            "/api/v1/user/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/docs",
-            "/api/v1/user/**",
+            "/api/v1/auth/**",
     };
 
     @Bean
@@ -38,7 +38,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http,
-            TelegramWebhookFilter webhookFilter,
             JwtAuthFilter jwtAuthFilter) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
@@ -46,10 +45,8 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers(WHITELIST).permitAll()
-                .requestMatchers("/webhook/**").permitAll()
                 .anyRequest().authenticated()
                 )
-                .addFilterBefore(webhookFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
                 return http.build();
