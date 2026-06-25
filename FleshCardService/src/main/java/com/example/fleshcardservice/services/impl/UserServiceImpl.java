@@ -9,6 +9,7 @@ import com.example.fleshcardservice.exceptions.customs.UserNotFoundException;
 import com.example.fleshcardservice.repositories.UserRepository;
 import com.example.fleshcardservice.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,13 +19,14 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository repository;
+    private final PasswordEncoder encoder;
 
     @Override
     public void create(UserCreateRequestDto dto) {
         User user = User.builder()
-                .chatId(dto.chatId())
+                .userName(dto.userName())
+                .password(encoder.encode(dto.password()))
                 .build();
-        System.out.println("Creating user: ");
         repository.save(user);
     }
 
@@ -38,11 +40,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserFullResponseDto getById(Long id) {
         User user = this.getUserById(id);
-        UserFullResponseDto dto = UserFullResponseDto.builder()
+        return UserFullResponseDto.builder()
                 .id(user.getId())
-                .chatId(user.getChatId())
+                .userName(user.getUsername())
                 .build();
-        return dto;
     }
 
     @Override

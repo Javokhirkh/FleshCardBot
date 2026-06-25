@@ -5,6 +5,6 @@ import lombok.Builder;
 @Builder
 public record UserFullResponseDto(
         Long id,
-        String chatId
+        String userName
 ) {
 }

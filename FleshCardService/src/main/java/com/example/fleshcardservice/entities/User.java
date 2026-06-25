@@ -20,8 +20,8 @@ import java.util.List;
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {
 
-    @Column(name = "chat_id", nullable = false)
-    private String chatId;
+//    @Column(name = "chat_id", nullable = false)
+//    private String chatId;
 
     @Column(name = "current_level")
     @Enumerated(EnumType.STRING)
@@ -49,15 +49,20 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "last_active_date")
     private LocalDate  lastActiveDate;
 
-    @Column(unique = true)
-    private String username;
+    @Column(name = "user_name", unique = true,  nullable = false)
+    private String userName;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
     }
 
     @Override
