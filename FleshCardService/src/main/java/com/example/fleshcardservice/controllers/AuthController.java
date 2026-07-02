@@ -21,7 +21,7 @@ import static com.example.fleshcardservice.controllers.AbstractController.PATH;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(PATH +"/auth")
-public class AuthController{
+public class AuthController {
 
     private final JwtUtil jwtUtil;
     private final UserService userService;
@@ -37,7 +37,7 @@ public class AuthController{
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid UserCreateRequestDto dto) {
+    public ResponseEntity<String> register(@RequestBody @Valid UserCreateRequestDto dto) {
         userService.create(dto);
         return ResponseEntity.ok().body("User created successfully");
     }

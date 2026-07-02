@@ -1,6 +1,10 @@
 package com.example.fleshcardservice.dtos.requests;
 
+import jakarta.validation.constraints.NotNull;
+
 public record UserUpdateRequestDto(
-        Long id
+        @NotNull
+        Long id,
+        String password
 ) {
 }

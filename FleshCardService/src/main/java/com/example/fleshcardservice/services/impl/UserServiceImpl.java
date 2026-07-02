@@ -6,6 +6,7 @@ import com.example.fleshcardservice.dtos.responses.UserFullResponseDto;
 import com.example.fleshcardservice.dtos.responses.UserShortResponseDto;
 import com.example.fleshcardservice.entities.User;
 import com.example.fleshcardservice.exceptions.customs.UserNotFoundException;
+import com.example.fleshcardservice.mapper.UserMapper;
 import com.example.fleshcardservice.repositories.UserRepository;
 import com.example.fleshcardservice.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository repository;
     private final PasswordEncoder encoder;
+    private final UserMapper mapper;
 
     @Override
     public void create(UserCreateRequestDto dto) {
@@ -33,22 +35,22 @@ public class UserServiceImpl implements UserService{
     @Override
     public void update(UserUpdateRequestDto dto) {
         User user = this.getUserById(dto.id());
-
+        user.setPassword(encoder.encode(dto.password()));
         repository.save(user);
     }
 
     @Override
     public UserFullResponseDto getById(Long id) {
         User user = this.getUserById(id);
-        return UserFullResponseDto.builder()
-                .id(user.getId())
-                .userName(user.getUsername())
-                .build();
+        return mapper.toFullDto(user);
     }
 
     @Override
     public List<UserShortResponseDto> getAll() {
-        return  null;
+        return repository.findAllByIsDeletedFalse()
+                .stream()
+                .map(mapper::toShortDto)
+                .toList();
     }
 
     @Override

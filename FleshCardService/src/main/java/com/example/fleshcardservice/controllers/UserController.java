@@ -1,27 +1,41 @@
 package com.example.fleshcardservice.controllers;
 
-import com.example.fleshcardservice.dtos.requests.UserCreateRequestDto;
-import com.example.fleshcardservice.services.UserService;
-import jakarta.validation.Valid;
+import com.example.fleshcardservice.dtos.requests.UserUpdateRequestDto;
+import com.example.fleshcardservice.dtos.responses.UserFullResponseDto;
+import com.example.fleshcardservice.dtos.responses.UserShortResponseDto;
+import com.example.fleshcardservice.services.impl.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import static com.example.fleshcardservice.controllers.AbstractController.PATH;
+import java.util.List;
 
 @RestController
-@RequestMapping(PATH +"/user")
-public class UserController extends AbstractController<UserService> {
+@RequiredArgsConstructor
+@RequestMapping("/user")
+public class UserController{
 
-    protected UserController(UserService service) {
-        super(service);
+    private final UserServiceImpl userService;
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<UserFullResponseDto> getUser(@PathVariable Long id){
+        return ResponseEntity.ok(userService.getById(id));
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<String> create(@RequestBody @Valid UserCreateRequestDto dto) {
-        service.create(dto);
-        return ResponseEntity.ok().body("User created successfully");
+    @GetMapping("/all")
+    public ResponseEntity<List<UserShortResponseDto>> getAllUser(){
+        return ResponseEntity.ok(userService.getAll());
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<String> UpdateUser(@RequestBody UserUpdateRequestDto dto){
+        userService.update(dto);
+        return ResponseEntity.ok("Updated");
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id){
+        userService.delete(id);
+        return ResponseEntity.ok("Deleted");
     }
 }

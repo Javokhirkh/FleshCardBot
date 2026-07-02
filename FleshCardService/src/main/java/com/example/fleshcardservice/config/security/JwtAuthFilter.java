@@ -1,5 +1,6 @@
 package com.example.fleshcardservice.config.security;
 
+import com.example.fleshcardservice.services.UserDetailsServiceCustom;
 import com.example.fleshcardservice.services.impl.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,7 +21,7 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
-    private final UserDetailsServiceImpl userService;
+    private final UserDetailsServiceCustom userService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
