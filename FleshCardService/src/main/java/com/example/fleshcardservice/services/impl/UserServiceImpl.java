@@ -53,8 +53,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserFullResponseDto getById(Long id) {
-        User user = this.getUserById(id);
-        return mapper.toFullDto(user);
+        return mapper.toFullDto(getUserById(id));
     }
 
     @Override
@@ -74,8 +73,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void delete(Long id) {
-        this.getUserById(id);
-        repository.trash(id);
+        User currentUser = userDetailsServiceCustom.getCurrentUser();
+
+        boolean isAdmin = currentUser.getRole() == Role.ADMIN;
+        if (isAdmin) {
+            repository.trash(id);
+        }
     }
 
 
