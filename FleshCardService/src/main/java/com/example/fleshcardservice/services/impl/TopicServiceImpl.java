@@ -50,7 +50,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public void delete(Long id) {
-        repository.deleteById(id);
+        repository.trash(id);
     }
 
     private Topic getTopicById(Long id) {

@@ -4,9 +4,7 @@ import com.example.fleshcardservice.dtos.requests.UserUpdateRequestDto;
 import com.example.fleshcardservice.dtos.responses.UserFullResponseDto;
 import com.example.fleshcardservice.dtos.responses.UserShortResponseDto;
 import com.example.fleshcardservice.services.UserService;
-import com.example.fleshcardservice.services.impl.UserServiceImpl;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +32,7 @@ public class UserController extends AbstractController<UserService>{
     }
 
     @PutMapping()
-    public ResponseEntity<Void> UpdateUser(@RequestBody @Valid UserUpdateRequestDto dto){
+    public ResponseEntity<Void> updateUser(@RequestBody @Valid UserUpdateRequestDto dto){
         service.update(dto);
         return ResponseEntity.ok().build();
     }
