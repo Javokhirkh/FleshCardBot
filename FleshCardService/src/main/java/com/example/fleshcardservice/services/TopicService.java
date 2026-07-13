@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TopicService extends GenericService{
 
-    void  createTopic(TopicCreateDto dto);
+    void  create(TopicCreateDto dto);
 
     void update(TopicUpdateDto dto);
 

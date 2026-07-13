@@ -21,11 +21,12 @@ public class TopicServiceImpl implements TopicService {
     private final TopicMapper mapper;
 
     @Override
-    public void createTopic(TopicCreateDto dto) {
+    public void create(TopicCreateDto dto) {
         Topic topic = Topic.builder()
                 .topicName(dto.topicName())
                 .build();
         repository.save(topic);
+        System.out.println("xato");
     }
 
     @Override

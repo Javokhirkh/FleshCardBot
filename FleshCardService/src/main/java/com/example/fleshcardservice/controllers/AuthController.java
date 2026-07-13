@@ -1,14 +1,12 @@
 package com.example.fleshcardservice.controllers;
 
-import com.example.fleshcardservice.config.security.JwtUtil;
 import com.example.fleshcardservice.dtos.requests.LoginRequest;
 import com.example.fleshcardservice.dtos.requests.UserCreateRequestDto;
-import com.example.fleshcardservice.services.UserService;
+import com.example.fleshcardservice.services.impl.AuthServiceImpl;
+import com.example.fleshcardservice.services.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,16 +21,12 @@ import static com.example.fleshcardservice.controllers.AbstractController.PATH;
 @RequestMapping(PATH +"/auth")
 public class AuthController {
 
-    private final JwtUtil jwtUtil;
-    private final UserService userService;
-    private final AuthenticationManager authenticationManager;
+    private final AuthServiceImpl authService;
+    private final UserServiceImpl userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest loginRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                loginRequest.userName(), loginRequest.password()
-        ));
-        String token = jwtUtil.generateToken(loginRequest.userName());
+        String token = authService.authenticate(loginRequest.userName(), loginRequest.password());
         return ResponseEntity.ok(Map.of("token", token));
     }
 
