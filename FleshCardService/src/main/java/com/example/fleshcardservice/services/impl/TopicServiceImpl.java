@@ -54,7 +54,7 @@ public class TopicServiceImpl implements TopicService {
         repository.trash(id);
     }
 
-    private Topic getTopicById(Long id) {
+    protected Topic getTopicById(Long id) {
         return repository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }
