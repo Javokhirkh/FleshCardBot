@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService{
     }
 
 
-    private User getUserById(Long id) {
+    protected User getUserById(Long id) {
         return repository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }

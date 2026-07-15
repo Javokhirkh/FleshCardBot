@@ -38,7 +38,7 @@ public class WordServiceImpl implements WordService {
 
     @Override
     public void update(WordUpdateRequestDto dto) {
-        Word word = findById(dto.id());
+        Word word = getWordById(dto.id());
         word.setText(dto.text());
         word.setTranslation(dto.translation());
         word.setPartOfSpeech(dto.partOfSpeech());
@@ -51,7 +51,7 @@ public class WordServiceImpl implements WordService {
 
     @Override
     public WordFullResponseDto getById(Long id) {
-        return mapper.toFullDto(findById(id));
+        return mapper.toFullDto(getWordById(id));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class WordServiceImpl implements WordService {
         repository.trash(id);
     }
 
-    private Word findById(Long id) {
+    protected Word getWordById(Long id) {
         return repository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }
